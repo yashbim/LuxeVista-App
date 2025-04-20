@@ -18,7 +18,7 @@ public class CreateAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        dbHelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_create_account);
 
         Button proceedToLogin_button = findViewById(R.id.proceed_to_login_button);
@@ -85,12 +85,12 @@ public class CreateAccount extends AppCompatActivity {
         String userEmail_value = userEmail.getText().toString().trim();
         String userPW_value = userPW.getText().toString().trim();
 
-//        if (dbHelper.registerUser(userEmail_value, userPW_value)) {
-//            Toast.makeText(getApplicationContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(this, LoginPage.class));
-//            finish();
-//        } else {
-//            Toast.makeText(getApplicationContext(), "Error Creating Account", Toast.LENGTH_SHORT).show();
-//        }
+        if (dbHelper.registerUser(userEmail_value, userPW_value)) {
+            Toast.makeText(getApplicationContext(), "Account Created Successfully", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginPage.class));
+            finish();
+        } else {
+            Toast.makeText(getApplicationContext(), "Error Creating Account", Toast.LENGTH_SHORT).show();
+        }
     }
 }

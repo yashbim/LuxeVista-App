@@ -17,7 +17,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        dbHelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_login_page);
 
         Button login_button = findViewById(R.id.proceed_to_login_button);
@@ -39,8 +39,8 @@ public class LoginPage extends AppCompatActivity {
             editor.putString("user_email", email);
             editor.apply();
 
-//            Intent intent_login = new Intent(this, LandingPage.class);
-//            startActivity(intent_login);
+            Intent intent_login = new Intent(this, LandingPage.class);
+            startActivity(intent_login);
         }
     }
 
@@ -50,7 +50,7 @@ public class LoginPage extends AppCompatActivity {
         String email_value = email.getText().toString().trim();
         String pw_value = pw.getText().toString().trim();
 
-//        credentials_ok = dbHelper.checkUser(email_value, pw_value);
+        credentials_ok = dbHelper.checkUser(email_value, pw_value);
 
         if (credentials_ok == false) {
             Toast.makeText(getApplicationContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
