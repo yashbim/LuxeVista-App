@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <ImageView
         android:id="@+id/logo_launch_page"
         android:layout_width="387dp"
@@ -19,27 +18,8 @@
         app:layout_constraintVertical_bias="0.182"
         app:srcCompat="@drawable/logo" />
 
-<!--    REGISTER-->
+    <!-- LOGIN -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_acc_button"
-        android:layout_width="309dp"
-        android:layout_height="55dp"
-        android:text="Register"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:backgroundTint="@android:color/white"
-        app:cornerRadius="10dp"
-        app:strokeColor="@android:color/black"
-        app:strokeWidth="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
-        app:layout_constraintVertical_bias="0.375" />
-
-
-<!--    LOGIN-->
-    <Button
         android:id="@+id/sign_in_button"
         android:layout_width="309dp"
         android:layout_height="55dp"
@@ -51,6 +31,25 @@
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_launch_page" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_launch_page"
+        app:layout_constraintBottom_toTopOf="@+id/create_acc_button"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- REGISTER -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_acc_button"
+        android:layout_width="309dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="Register"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:backgroundTint="@android:color/white"
+        app:cornerRadius="10dp"
+        app:strokeColor="@android:color/black"
+        app:strokeWidth="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
