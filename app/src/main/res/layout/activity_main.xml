@@ -47,7 +47,7 @@
         app:backgroundTint="@android:color/white"
         app:cornerRadius="10dp"
         app:strokeColor="@android:color/black"
-        app:strokeWidth="2dp"
+        app:strokeWidth="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
