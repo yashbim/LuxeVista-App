@@ -1,5 +1,6 @@
 package com.example.luxevista_app;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -117,6 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param email User's email
      * @return user ID if found, -1 otherwise
      */
+    @SuppressLint("Range")
     public int getUserIdByEmail(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
 

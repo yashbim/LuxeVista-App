@@ -4,9 +4,6 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
-        <item name="android:windowBackground">@color/white</item>
-
-        <item name="android:statusBarColor">@color/light_grey_1</item>
     </style>
 
     <style name="Theme.LuxeVistaApp" parent="Base.Theme.LuxeVistaApp" />

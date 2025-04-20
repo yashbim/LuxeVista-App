@@ -12,5 +12,6 @@
     <color name="dark_blue_2">#404472</color>
     <color name="dark_grey_1">#5c5f7c</color>
     <color name="light_grey_1">#c3c0c0</color>
+    <color name="bg_white">#EDEBEB</color>
 
 </resources>
