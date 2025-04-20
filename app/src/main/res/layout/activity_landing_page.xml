@@ -38,8 +38,9 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Card 1: View Rooms -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardBookRoom"
+        android:id="@+id/cardViewRooms"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -58,7 +59,7 @@
 
             <!-- Background for the entire card -->
             <View
-                android:id="@+id/backgroundView"
+                android:id="@+id/backgroundViewRooms"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/white"
@@ -69,18 +70,18 @@
 
             <!-- Slanted divider -->
             <View
-                android:id="@+id/slantedDivider"
+                android:id="@+id/slantedDividerRooms"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
                 android:background="@color/white"
                 android:rotation="10"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageSection"
+                app:layout_constraintStart_toEndOf="@id/imageSectionRooms"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Image section (1/3 of the card) -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/imageSection"
+                android:id="@+id/imageSectionRooms"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -89,7 +90,7 @@
                 app:layout_constraintWidth_percent="0.33">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imageSlanted"
+                    android:id="@+id/imageSlantedRooms"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
@@ -100,7 +101,6 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Text section (2/3 of the card) -->
@@ -112,7 +112,7 @@
                 android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/slantedDivider"
+                app:layout_constraintStart_toEndOf="@id/slantedDividerRooms"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -134,6 +134,292 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Card 2: View Services -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewServices"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/cardViewRooms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Background for the entire card -->
+            <View
+                android:id="@+id/backgroundViewServices"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Slanted divider -->
+            <View
+                android:id="@+id/slantedDividerServices"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:rotation="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageSectionServices"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Image section (1/3 of the card) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageSectionServices"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.33">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageSlantedServices"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/service_1"
+                    android:contentDescription="Hotel services preview"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Text section (2/3 of the card) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/slantedDividerServices"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Services"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Explore our amenities"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/DarkGrey" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Card 3: Local Attractions -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardLocalAttractions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/cardViewServices"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Background for the entire card -->
+            <View
+                android:id="@+id/backgroundViewAttractions"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Slanted divider -->
+            <View
+                android:id="@+id/slantedDividerAttractions"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:rotation="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageSectionAttractions"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Image section (1/3 of the card) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageSectionAttractions"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.33">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageSlantedAttractions"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/local_attractions_1"
+                    android:contentDescription="Local attractions preview"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Text section (2/3 of the card) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/slantedDividerAttractions"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Local Attractions"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Discover nearby experiences"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/DarkGrey" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Card 4: Hotel Information -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardHotelInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/cardLocalAttractions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Background for the entire card -->
+            <View
+                android:id="@+id/backgroundViewInfo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Slanted divider -->
+            <View
+                android:id="@+id/slantedDividerInfo"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:rotation="10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageSectionInfo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Image section (1/3 of the card) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/imageSectionInfo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.33">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageSlantedInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hotel_information_1"
+                    android:contentDescription="Hotel information preview"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Text section (2/3 of the card) -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/slantedDividerInfo"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hotel Information"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="About us and contact details"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/DarkGrey" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
