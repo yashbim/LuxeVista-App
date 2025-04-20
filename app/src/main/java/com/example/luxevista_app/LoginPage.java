@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginPage extends AppCompatActivity {
-    private boolean login_success = false; //change
+    private boolean login_success = false;
     private boolean credentials_ok = false;
     private boolean no_empty_fields = false;
     private DatabaseHelper dbHelper;
