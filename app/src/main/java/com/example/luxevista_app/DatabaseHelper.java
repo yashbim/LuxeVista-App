@@ -138,4 +138,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return userId;
     }
+
+    public boolean updatePassword(String email, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_USER_PASSWORD, newPassword);
+
+        // Update the password where email matches
+        int result = db.update(
+                TABLE_USERS,
+                values,
+                KEY_USER_EMAIL + " = ?",
+                new String[]{email}
+        );
+        db.close();
+
+        return result > 0;  // Returns true if at least one row was updated
+    }
 }
