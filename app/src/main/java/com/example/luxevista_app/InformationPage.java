@@ -1,6 +1,8 @@
 package com.example.luxevista_app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +15,18 @@ public class InformationPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_information_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        // go to account settings
+        View viewAccSettings = findViewById(R.id.account_settings_button);
+        viewAccSettings.setOnClickListener(view -> {
+
+            Intent intent_viewAccSettings_button = new Intent(this, Reset_Password.class);
+            startActivity(intent_viewAccSettings_button);
+
         });
+
+
+
     }
 }

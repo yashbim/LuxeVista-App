@@ -36,5 +36,14 @@ public class LandingPage extends AppCompatActivity {
 
         });
 
+        // go to infomration page
+        View viewInformationPage = findViewById(R.id.backgroundViewInfo);
+        viewInformationPage.setOnClickListener(view -> {
+
+            Intent intent_viewInformationPage_button = new Intent(this, InformationPage.class);
+            startActivity(intent_viewInformationPage_button);
+
+        });
+
     }
 }
