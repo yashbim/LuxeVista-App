@@ -18,11 +18,21 @@ public class LandingPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
 
+        // go to view rooms
         View viewRooms = findViewById(R.id.backgroundViewRooms);
         viewRooms.setOnClickListener(view -> {
 
             Intent intent_viewRooms_button = new Intent(this, ViewRooms.class);
             startActivity(intent_viewRooms_button);
+
+        });
+
+        // go to view rooms
+        View viewLocalAttractions = findViewById(R.id.backgroundViewAttractions);
+        viewLocalAttractions.setOnClickListener(view -> {
+
+            Intent intent_viewLocalAttractions_button = new Intent(this, ViewLocalAttractions.class);
+            startActivity(intent_viewLocalAttractions_button);
 
         });
 
