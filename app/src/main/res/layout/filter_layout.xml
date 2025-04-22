@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filter Options"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+        <!-- Room Type Filter -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room Type:"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/roomTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Availability Filter -->
+        <CheckBox
+            android:id="@+id/availabilityCheckbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show available rooms only"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Price Range Filter -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price Range:"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/minPriceEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Min $"
+                android:inputType="numberDecimal"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/maxPriceEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Max $"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+        <!-- Sort Options -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort By:"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/sortBySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Apply Filters Button -->
+        <Button
+            android:id="@+id/applyFiltersButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Apply Filters"
+            android:backgroundTint="@color/dark_blue_2"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
