@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +23,14 @@ public class Reset_Password extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_reset_password);
+
+        // Retrieve the logged-in email from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString("user_email", "No email found");
+
+        // Update the TextView with the email
+        TextView emailTextView = findViewById(R.id.view_current_email);
+        emailTextView.setText(savedEmail);
 
         Button proceedToLogin_button = (Button) findViewById(R.id.reset_login_button);
         proceedToLogin_button.setOnClickListener(new View.OnClickListener() {
