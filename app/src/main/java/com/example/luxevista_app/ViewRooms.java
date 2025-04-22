@@ -153,14 +153,14 @@ public class ViewRooms extends AppCompatActivity {
         roomList.add(new Room("Mountain View Suite",
                 "Luxurious suite with panoramic mountain views and a fireplace.",
                 "$280 / night",
-                R.drawable.ocean_suite, // Using ocean_suite image as placeholder
+                R.drawable.mountain_suite, // Using ocean_suite image as placeholder
                 "Suite",
                 true));
 
         roomList.add(new Room("Executive Suite",
                 "Premium suite with separate living area and executive workspace.",
                 "$350 / night",
-                R.drawable.deluxe_room, // Using deluxe_room image as placeholder
+                R.drawable.executive_suite, // Using deluxe_room image as placeholder
                 "Suite",
                 false));
 

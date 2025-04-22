@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/deluxe_room"
+                    android:src="@drawable/executive_suite"
                     android:contentDescription="Hotel room preview"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
