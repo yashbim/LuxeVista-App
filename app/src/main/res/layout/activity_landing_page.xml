@@ -94,7 +94,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/hotel_room_1"
+                    android:src="@drawable/deluxe_room"
                     android:contentDescription="Hotel room preview"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintStart_toStartOf="parent"
@@ -406,7 +406,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hotel Information"
+                    android:text="Information"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -415,7 +415,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="About us and contact details"
+                    android:text="Account and contact details"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:textColor="@color/DarkGrey" />
             </LinearLayout>
