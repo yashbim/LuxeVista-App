@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="16dp"
+    android:backgroundTint="@color/bg_white"
     app:cardElevation="8dp">
 
     <LinearLayout
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
             android:text="Ocean View Suite"
+            android:textColor="@color/black"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textStyle="bold" />
 
