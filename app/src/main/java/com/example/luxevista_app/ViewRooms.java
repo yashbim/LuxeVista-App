@@ -1,5 +1,6 @@
 package com.example.luxevista_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,6 +42,15 @@ public class ViewRooms extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_rooms);
+
+        // go to view rooms
+        View BookRooms = findViewById(R.id.book_now_button);
+        BookRooms.setOnClickListener(view -> {
+
+            Intent intent_BookRooms_button = new Intent(this, BookRooms.class);
+            startActivity(intent_BookRooms_button);
+
+        });
 
         Log.d(TAG, "onCreate: Starting ViewRooms activity");
 
