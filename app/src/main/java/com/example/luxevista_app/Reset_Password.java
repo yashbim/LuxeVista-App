@@ -1,6 +1,5 @@
 package com.example.luxevista_app;
 
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,11 +10,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 public class Reset_Password extends AppCompatActivity {
 
     private boolean confirmPW = false;
-
     private DatabaseHelper dbHelper;
 
     @Override
@@ -46,12 +43,16 @@ public class Reset_Password extends AppCompatActivity {
         if (confirmPW == false) {
             Toast.makeText(
                     getApplicationContext(),
-                    "Passwords do not match",
+                    "Passwords do not match or are invalid",
                     Toast.LENGTH_SHORT
             ).show();
         } else if (confirmPW == true) {
             proceedToLogin();
         }
+    }
+
+    private boolean isPasswordValid(String password) {
+        return password != null && password.trim().length() >= 8;
     }
 
     private void passwordSimilarityCheck() {
@@ -63,7 +64,12 @@ public class Reset_Password extends AppCompatActivity {
         String password2 = pw2.getText().toString();
         System.out.print(password2);
 
-        confirmPW = password1.equals(password2) ? true : false;
+        // Check if passwords are at least 8 characters and match
+        if (!isPasswordValid(password1) || !isPasswordValid(password2)) {
+            confirmPW = false;
+        } else {
+            confirmPW = password1.equals(password2);
+        }
     }
 
     private void proceedToLogin() {
