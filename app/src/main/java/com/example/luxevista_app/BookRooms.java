@@ -1,6 +1,10 @@
 package com.example.luxevista_app;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,15 +50,20 @@ public class BookRooms extends AppCompatActivity {
     // Room prices map
     private Map<String, Double> roomPrices = new HashMap<>();
 
+    private DatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_rooms);
 
+        // Initialize database helper
+        dbHelper = new DatabaseHelper(this);
+
         // Initialize UI elements
         initializeUI();
 
-        // Setup room prices
+        // Setup room prices (now we'll get these from the database)
         setupRoomPrices();
 
         // Setup spinners
@@ -88,13 +97,23 @@ public class BookRooms extends AppCompatActivity {
     }
 
     private void setupRoomPrices() {
-        // Set up room prices based on your Room.java class
-        roomPrices.put("Ocean View Suite", 250.0);
-        roomPrices.put("Deluxe Room", 180.0);
-        roomPrices.put("Family Villa", 320.0);
-        roomPrices.put("Standard Room", 120.0);
-        roomPrices.put("Mountain View Suite", 280.0);
-        roomPrices.put("Executive Suite", 350.0);
+        // Now we'll fetch room prices from the database instead of hardcoding them
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.query(
+                "rooms",
+                new String[]{"room_type", "price"},
+                null, null, null, null, null
+        );
+
+        roomPrices.clear();
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") String roomType = cursor.getString(cursor.getColumnIndex("room_type"));
+                @SuppressLint("Range") double price = cursor.getDouble(cursor.getColumnIndex("price"));
+                roomPrices.put(roomType, price);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
     }
 
     private void setupRoomTypeSpinner() {
@@ -114,6 +133,7 @@ public class BookRooms extends AppCompatActivity {
                 String selectedRoom = parent.getItemAtPosition(position).toString();
                 summaryRoomType.setText(selectedRoom);
                 updateTotalPrice();
+                checkRoomAvailability();
             }
 
             @Override
@@ -121,6 +141,24 @@ public class BookRooms extends AppCompatActivity {
                 summaryRoomType.setText("Not selected");
             }
         });
+    }
+
+    private void checkRoomAvailability() {
+        if (roomTypeSpinner.getSelectedItem() != null) {
+            String selectedRoom = roomTypeSpinner.getSelectedItem().toString();
+            String checkInDate = checkInDateEditText.getText().toString();
+            String checkOutDate = checkOutDateEditText.getText().toString();
+
+            int availableRooms = dbHelper.getRoomAvailability(selectedRoom, checkInDate, checkOutDate);
+
+            if (availableRooms <= 0) {
+                Toast.makeText(this, "No " + selectedRoom + " available for selected dates", Toast.LENGTH_LONG).show();
+                bookNowButton.setEnabled(false);
+            } else {
+                Toast.makeText(this, availableRooms + " " + selectedRoom + "(s) available", Toast.LENGTH_SHORT).show();
+                bookNowButton.setEnabled(true);
+            }
+        }
     }
 
     private void setupGuestsSpinners() {
@@ -239,6 +277,11 @@ public class BookRooms extends AppCompatActivity {
 
         // Update total price
         updateTotalPrice();
+
+        // Check room availability with new dates
+        if (roomTypeSpinner.getSelectedItem() != null) {
+            checkRoomAvailability();
+        }
     }
 
     private void updateTotalPrice() {
@@ -269,17 +312,56 @@ public class BookRooms extends AppCompatActivity {
                 return;
             }
 
-            // Here you would typically proceed with the booking
-            // For now, just show a confirmation message
-            String message = "Booking confirmed for " + summaryRoomType.getText() +
-                    " from " + summaryCheckIn.getText() +
-                    " to " + summaryCheckOut.getText() +
-                    ". Total: " + summaryTotalPrice.getText();
+            String selectedRoom = roomTypeSpinner.getSelectedItem().toString();
+            String checkInDate = checkInDateEditText.getText().toString();
+            String checkOutDate = checkOutDateEditText.getText().toString();
 
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+            // Recheck availability just before booking
+            int availableRooms = dbHelper.getRoomAvailability(selectedRoom, checkInDate, checkOutDate);
+            if (availableRooms <= 0) {
+                Toast.makeText(this, "Sorry, this room is no longer available for the selected dates", Toast.LENGTH_LONG).show();
+                return;
+            }
 
-            // In a real app, you would save the booking to a database
-            // and navigate to a confirmation page
+            // Get the user email from shared preferences
+            SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+            String userEmail = sharedPreferences.getString("user_email", "");
+
+            if (userEmail.isEmpty()) {
+                Toast.makeText(this, "Please log in to book a room", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Get user ID from email
+            int userId = dbHelper.getUserIdByEmail(userEmail);
+            if (userId == -1) {
+                Toast.makeText(this, "User not found", Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            // Get booking details
+            int adults = (int) adultsSpinner.getSelectedItem();
+            int children = (int) childrenSpinner.getSelectedItem();
+            double totalPrice = Double.parseDouble(summaryTotalPrice.getText().toString().replace("$", ""));
+
+            // Create booking in the database
+            boolean bookingSuccess = dbHelper.createBooking(
+                    userId, selectedRoom, checkInDate, checkOutDate,
+                    adults, children, totalPrice);
+
+            if (bookingSuccess) {
+                String message = "Booking confirmed for " + summaryRoomType.getText() +
+                        " from " + summaryCheckIn.getText() +
+                        " to " + summaryCheckOut.getText() +
+                        ". Total: " + summaryTotalPrice.getText();
+
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+                // You might want to navigate to a confirmation page or back to the main screen
+                finish(); // This will just close the booking screen
+            } else {
+                Toast.makeText(this, "Booking failed. Please try again.", Toast.LENGTH_LONG).show();
+            }
         });
     }
 }

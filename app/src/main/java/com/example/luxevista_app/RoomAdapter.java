@@ -14,10 +14,10 @@ import java.util.List;
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder> {
 
     private Context context;
-    private List<Room> roomList;
-    private List<Room> filteredRoomList;
+    private List<Room_Info> roomList;
+    private List<Room_Info> filteredRoomList;
 
-    public RoomAdapter(Context context, List<Room> roomList) {
+    public RoomAdapter(Context context, List<Room_Info> roomList) {
         this.context = context;
         this.roomList = roomList;
         this.filteredRoomList = new ArrayList<>(roomList);
@@ -32,7 +32,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RoomViewHolder holder, int position) {
-        Room room = filteredRoomList.get(position);
+        Room_Info room = filteredRoomList.get(position);
         holder.title.setText(room.getTitle());
         holder.description.setText(room.getDescription());
         holder.price.setText(room.getPrice());
@@ -51,7 +51,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
     public void filterRooms(String roomType, double minPrice, double maxPrice, boolean availableOnly) {
         filteredRoomList.clear();
 
-        for (Room room : roomList) {
+        for (Room_Info room : roomList) {
             boolean matchesRoomType = roomType.equals("All") || room.getRoomType().equals(roomType);
             boolean matchesPrice = (room.getPriceValue() >= minPrice &&
                     (maxPrice == 0 || room.getPriceValue() <= maxPrice));

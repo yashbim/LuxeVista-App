@@ -21,7 +21,7 @@ public class ViewRooms extends AppCompatActivity {
     private static final String TAG = "ViewRooms";
     private RecyclerView recyclerView;
     private RoomAdapter adapter;
-    private List<Room> roomList;
+    private List<Room_Info> roomList;
 
     // Filter UI elements
     private Button toggleFilterButton;
@@ -131,28 +131,28 @@ public class ViewRooms extends AppCompatActivity {
         roomList = new ArrayList<>();
 
         // Adding sample rooms with room type and availability
-        roomList.add(new Room("Ocean View Suite",
+        roomList.add(new Room_Info("Ocean View Suite",
                 "Spacious suite with a breathtaking ocean view, private balcony, and king-size bed.",
                 "$250 / night",
                 R.drawable.ocean_suite,
                 "Suite",
                 true));
 
-        roomList.add(new Room("Deluxe Room",
+        roomList.add(new Room_Info("Deluxe Room",
                 "Comfortable deluxe room with modern furnishings and garden view.",
                 "$180 / night",
                 R.drawable.deluxe_room,
                 "Deluxe",
                 true));
 
-        roomList.add(new Room("Family Villa",
+        roomList.add(new Room_Info("Family Villa",
                 "Ideal for families, includes two bedrooms and a private pool.",
                 "$320 / night",
                 R.drawable.family_villa,
                 "Villa",
                 false));
 
-        roomList.add(new Room("Standard Room",
+        roomList.add(new Room_Info("Standard Room",
                 "Affordable and cozy room with all essential amenities.",
                 "$120 / night",
                 R.drawable.standard_room,
@@ -160,14 +160,14 @@ public class ViewRooms extends AppCompatActivity {
                 true));
 
         // Add more rooms as needed for demonstration
-        roomList.add(new Room("Mountain View Suite",
+        roomList.add(new Room_Info("Mountain View Suite",
                 "Luxurious suite with panoramic mountain views and a fireplace.",
                 "$280 / night",
                 R.drawable.mountain_suite, // Using ocean_suite image as placeholder
                 "Suite",
                 true));
 
-        roomList.add(new Room("Executive Suite",
+        roomList.add(new Room_Info("Executive Suite",
                 "Premium suite with separate living area and executive workspace.",
                 "$350 / night",
                 R.drawable.executive_suite, // Using deluxe_room image as placeholder

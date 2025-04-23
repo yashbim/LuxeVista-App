@@ -1,6 +1,6 @@
 package com.example.luxevista_app;
 
-public class Room {
+public class Room_Info {
     private String title;
     private String description;
     private String price;
@@ -9,8 +9,8 @@ public class Room {
     private boolean isAvailable;
     private double priceValue; // Numeric value for sorting/filtering
 
-    public Room(String title, String description, String price, int imageResId,
-                String roomType, boolean isAvailable) {
+    public Room_Info(String title, String description, String price, int imageResId,
+                     String roomType, boolean isAvailable) {
         this.title = title;
         this.description = description;
         this.price = price;
