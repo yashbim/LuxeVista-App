@@ -37,6 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_BOOKING_CHILDREN = "children";
     private static final String KEY_BOOKING_TOTAL_PRICE = "total_price";
 
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -70,6 +71,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 KEY_BOOKING_TOTAL_PRICE + " REAL," +
                 "FOREIGN KEY(" + KEY_BOOKING_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + KEY_USER_ID + ")" +
                 ")";
+
+
 
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_ROOMS_TABLE);
@@ -368,4 +371,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result > 0;  // Returns true if at least one row was updated
     }
+
+
 }
