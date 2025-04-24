@@ -27,7 +27,16 @@ public class LandingPage extends AppCompatActivity {
 
         });
 
-        // go to view rooms
+        // go to view services
+        View viewServices = findViewById(R.id.backgroundViewServices);
+        viewServices.setOnClickListener(view -> {
+
+            Intent intent_viewServices_button = new Intent(this, ViewServicesPage.class);
+            startActivity(intent_viewServices_button);
+
+        });
+
+        // go to view attractions
         View viewLocalAttractions = findViewById(R.id.backgroundViewAttractions);
         viewLocalAttractions.setOnClickListener(view -> {
 
