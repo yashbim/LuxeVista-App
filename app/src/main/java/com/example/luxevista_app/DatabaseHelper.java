@@ -79,6 +79,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         initializeRooms(db);
     }
 
+    /**
+     * Get all bookings for a specific user
+     * @param userId User ID
+     * @return Cursor containing all bookings
+     */
+    public Cursor getUserBookings(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT " +
+                "b." + KEY_BOOKING_ID + ", " +
+                "b." + KEY_BOOKING_ROOM_TYPE + ", " +
+                "b." + KEY_BOOKING_CHECK_IN + ", " +
+                "b." + KEY_BOOKING_CHECK_OUT + ", " +
+                "b." + KEY_BOOKING_ADULTS + ", " +
+                "b." + KEY_BOOKING_CHILDREN + ", " +
+                "b." + KEY_BOOKING_TOTAL_PRICE + ", " +
+                "r." + KEY_ROOM_PRICE + " " +
+                "FROM " + TABLE_BOOKINGS + " b " +
+                "JOIN " + TABLE_ROOMS + " r ON b." + KEY_BOOKING_ROOM_TYPE + " = r." + KEY_ROOM_TYPE + " " +
+                "WHERE b." + KEY_BOOKING_USER_ID + " = ? " +
+                "ORDER BY b." + KEY_BOOKING_CHECK_IN + " DESC";
+
+        return db.rawQuery(query, new String[]{String.valueOf(userId)});
+    }
+
+    /**
+     * Check if a user has any bookings
+     * @param userId User ID
+     * @return true if user has bookings, false otherwise
+     */
+    public boolean hasBookings(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = KEY_BOOKING_USER_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+
+        Cursor cursor = db.query(TABLE_BOOKINGS, null, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
+
+        cursor.close();
+
+        return count > 0;
+    }
+
     private void initializeRooms(SQLiteDatabase db) {
         String[] roomTypes = {
                 "Ocean View Suite",

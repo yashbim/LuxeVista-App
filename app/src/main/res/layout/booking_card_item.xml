@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Room Type -->
+        <TextView
+            android:id="@+id/cardRoomType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ocean View Suite"
+            android:textColor="@color/dark_blue_1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Dates -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dates: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cardDates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04/25/2025 to 04/28/2025" />
+        </LinearLayout>
+
+        <!-- Guests -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guests: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cardGuests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 Adults, 1 Children" />
+        </LinearLayout>
+
+        <!-- Nights -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Duration: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cardNights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 nights" />
+        </LinearLayout>
+
+        <!-- Total Price -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Price: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cardPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$750.00"
+                android:textColor="@color/dark_blue_1"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

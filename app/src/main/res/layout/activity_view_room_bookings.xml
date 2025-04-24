@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ViewRooms">
+    tools:context=".ViewRoomBookings">
 
     <!-- Header -->
     <androidx.cardview.widget.CardView
@@ -55,17 +55,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your Bookings"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="15dp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/dark_blue_1"/>
 
+            <!-- Container for booking cards -->
+            <LinearLayout
+                android:id="@+id/bookingsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
         </LinearLayout>
     </ScrollView>
