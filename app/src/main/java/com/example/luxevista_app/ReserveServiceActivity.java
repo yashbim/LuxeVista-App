@@ -73,6 +73,12 @@ public class ReserveServiceActivity extends AppCompatActivity {
 
             // Check if user has an active booking on the selected date
             if (dbHelper.hasActiveBookingOnDate(userId, dateStr)) {
+                // Check if user already has any service reservation at this time
+                if (dbHelper.userHasServiceReservationAt(userId, dateStr, timeStr)) {
+                    Toast.makeText(this, "You already have a service reservation at this time. Please choose another time.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 // Check if service is available at the selected time
                 if (dbHelper.isServiceAvailable(selectedService, dateStr, timeStr)) {
                     // Create service reservation

@@ -545,6 +545,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count > 0;
     }
 
+    /**
+     * Check if a user already has any service reservation at the specified date and time
+     * @param userId User ID
+     * @param reservationDate Date in MM/dd/yyyy format
+     * @param reservationTime Time in HH:mm format
+     * @return true if user already has a reservation, false otherwise
+     */
+    public boolean userHasServiceReservationAt(int userId, String reservationDate, String reservationTime) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = KEY_SERVICE_RESERVATION_USER_ID + " = ? AND " +
+                KEY_SERVICE_RESERVATION_DATE + " = ? AND " +
+                KEY_SERVICE_RESERVATION_TIME + " = ?";
+        String[] selectionArgs = {String.valueOf(userId), reservationDate, reservationTime};
+
+        Cursor cursor = db.query(
+                TABLE_SERVICE_RESERVATIONS,
+                null,
+                selection,
+                selectionArgs,
+                null, null, null
+        );
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count > 0;
+    }
+
 
 
 
