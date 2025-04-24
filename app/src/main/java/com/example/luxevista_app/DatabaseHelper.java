@@ -11,12 +11,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
     private static final String DATABASE_NAME = "LuxeVista.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Table Names
     private static final String TABLE_USERS = "users";
     private static final String TABLE_ROOMS = "rooms";
     private static final String TABLE_BOOKINGS = "bookings";
+
+    private static final String TABLE_SERVICES = "services";
+    private static final String TABLE_SERVICE_RESERVATIONS = "service_reservations";
 
     // User Table Columns
     private static final String KEY_USER_ID = "id";
@@ -36,6 +39,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_BOOKING_ADULTS = "adults";
     private static final String KEY_BOOKING_CHILDREN = "children";
     private static final String KEY_BOOKING_TOTAL_PRICE = "total_price";
+
+    // Services Table Columns
+    private static final String KEY_SERVICE_ID = "id";
+    private static final String KEY_SERVICE_NAME = "name";
+    private static final String KEY_SERVICE_MAX_CONCURRENT = "max_concurrent";
+
+    // Service Reservations Table Columns
+    private static final String KEY_SERVICE_RESERVATION_ID = "id";
+    private static final String KEY_SERVICE_RESERVATION_USER_ID = "user_id";
+    private static final String KEY_SERVICE_RESERVATION_SERVICE_NAME = "service_name";
+    private static final String KEY_SERVICE_RESERVATION_DATE = "reservation_date";
+    private static final String KEY_SERVICE_RESERVATION_TIME = "reservation_time";
 
 
     public DatabaseHelper(Context context) {
@@ -78,8 +93,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_ROOMS_TABLE);
         db.execSQL(CREATE_BOOKINGS_TABLE);
 
+        String CREATE_SERVICES_TABLE = "CREATE TABLE " + TABLE_SERVICES +
+                "(" +
+                KEY_SERVICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_SERVICE_NAME + " TEXT UNIQUE," +
+                KEY_SERVICE_MAX_CONCURRENT + " INTEGER" +
+                ")";
+
+        String CREATE_SERVICE_RESERVATIONS_TABLE = "CREATE TABLE " + TABLE_SERVICE_RESERVATIONS +
+                "(" +
+                KEY_SERVICE_RESERVATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_SERVICE_RESERVATION_USER_ID + " INTEGER," +
+                KEY_SERVICE_RESERVATION_SERVICE_NAME + " TEXT," +
+                KEY_SERVICE_RESERVATION_DATE + " TEXT," +
+                KEY_SERVICE_RESERVATION_TIME + " TEXT," +
+                "FOREIGN KEY(" + KEY_SERVICE_RESERVATION_USER_ID + ") REFERENCES " + TABLE_USERS + "(" + KEY_USER_ID + ")" +
+                ")";
+
+        db.execSQL(CREATE_SERVICES_TABLE);
+        db.execSQL(CREATE_SERVICE_RESERVATIONS_TABLE);
+
         // Initialize rooms with 5 of each type
         initializeRooms(db);
+
+        // Initialize available services
+        initializeServices(db);
     }
 
     /**
@@ -155,6 +193,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_BOOKINGS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROOMS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SERVICES);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_SERVICE_RESERVATIONS);
             // Create tables again
             onCreate(db);
         }
@@ -371,6 +411,141 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result > 0;  // Returns true if at least one row was updated
     }
+
+
+    //services
+
+    private void initializeServices(SQLiteDatabase db) {
+        String[] services = {"Spa Treatment", "Poolside Cabanas"};
+        int[] maxConcurrent = {1, 1}; // Only 1 reservation at a time for each
+
+        for (int i = 0; i < services.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put(KEY_SERVICE_NAME, services[i]);
+            values.put(KEY_SERVICE_MAX_CONCURRENT, maxConcurrent[i]);
+            db.insert(TABLE_SERVICES, null, values);
+        }
+    }
+
+    /**
+     * Check if a service is available at the specified date and time
+     * @param service Service name
+     * @param reservationDate Date in MM/dd/yyyy format
+     * @param reservationTime Time in HH:mm format
+     * @return true if service is available, false otherwise
+     */
+    public boolean isServiceAvailable(String service, String reservationDate, String reservationTime) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Get max concurrent bookings for this service
+        int maxConcurrent = 0;
+        Cursor serviceCursor = db.query(
+                TABLE_SERVICES,
+                new String[]{KEY_SERVICE_MAX_CONCURRENT},
+                KEY_SERVICE_NAME + " = ?",
+                new String[]{service},
+                null, null, null
+        );
+
+        if (serviceCursor.moveToFirst()) {
+            maxConcurrent = serviceCursor.getInt(0);
+        }
+        serviceCursor.close();
+
+        // Count existing reservations for this service, date and time
+        String selection = KEY_SERVICE_RESERVATION_SERVICE_NAME + " = ? AND " +
+                KEY_SERVICE_RESERVATION_DATE + " = ? AND " +
+                KEY_SERVICE_RESERVATION_TIME + " = ?";
+        String[] selectionArgs = {service, reservationDate, reservationTime};
+
+        Cursor reservationCursor = db.query(
+                TABLE_SERVICE_RESERVATIONS,
+                null,
+                selection,
+                selectionArgs,
+                null, null, null
+        );
+
+        int currentReservations = reservationCursor.getCount();
+        reservationCursor.close();
+
+        return currentReservations < maxConcurrent;
+    }
+
+    /**
+     * Create a new service reservation
+     * @param userId User ID making the reservation
+     * @param service Service being reserved
+     * @param reservationDate Date in MM/dd/yyyy format
+     * @param reservationTime Time in HH:mm format
+     * @return true if reservation successful, false otherwise
+     */
+    public boolean createServiceReservation(int userId, String service, String reservationDate, String reservationTime) {
+        // First check if service is available
+        if (!isServiceAvailable(service, reservationDate, reservationTime)) {
+            return false;
+        }
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(KEY_SERVICE_RESERVATION_USER_ID, userId);
+        values.put(KEY_SERVICE_RESERVATION_SERVICE_NAME, service);
+        values.put(KEY_SERVICE_RESERVATION_DATE, reservationDate);
+        values.put(KEY_SERVICE_RESERVATION_TIME, reservationTime);
+
+        long id = db.insert(TABLE_SERVICE_RESERVATIONS, null, values);
+        return id != -1;
+    }
+
+    /**
+     * Get all service reservations for a specific user
+     * @param userId User ID
+     * @return Cursor containing all service reservations
+     */
+    public Cursor getUserServiceReservations(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selection = KEY_SERVICE_RESERVATION_USER_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(userId)};
+        String orderBy = KEY_SERVICE_RESERVATION_DATE + " ASC, " + KEY_SERVICE_RESERVATION_TIME + " ASC";
+
+        return db.query(
+                TABLE_SERVICE_RESERVATIONS,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                orderBy
+        );
+    }
+
+    /**
+     * Check if a user has active bookings on a specific date
+     * @param userId User ID
+     * @param date Date to check in MM/dd/yyyy format
+     * @return true if user has bookings on that date, false otherwise
+     */
+    public boolean hasActiveBookingOnDate(int userId, String date) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT COUNT(*) FROM " + TABLE_BOOKINGS +
+                " WHERE " + KEY_BOOKING_USER_ID + " = ?" +
+                " AND ? BETWEEN " + KEY_BOOKING_CHECK_IN + " AND " + KEY_BOOKING_CHECK_OUT;
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId), date});
+
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+
+        return count > 0;
+    }
+
+
 
 
 }

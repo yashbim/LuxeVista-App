@@ -1,6 +1,7 @@
 package com.example.luxevista_app;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -12,15 +13,6 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class ReserveServiceActivity extends AppCompatActivity {
 
@@ -29,7 +21,7 @@ public class ReserveServiceActivity extends AppCompatActivity {
     private TimePicker timePicker;
     private Button btnReserve;
     private DatabaseHelper dbHelper;
-    private int userId; // You need to get this from session or intent
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +34,26 @@ public class ReserveServiceActivity extends AppCompatActivity {
         btnReserve = findViewById(R.id.btnReserveService);
         dbHelper = new DatabaseHelper(this);
 
+        // Get user ID from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String userEmail = sharedPreferences.getString("user_email", "");
+
+        if (!userEmail.isEmpty()) {
+            userId = dbHelper.getUserIdByEmail(userEmail);
+        } else {
+            userId = -1;
+        }
+
+        if (userId == -1) {
+            Toast.makeText(this, "Please log in to reserve services", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+
         // Set up service options
         String[] services = {"Spa Treatment", "Poolside Cabanas"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, services);
         spinnerService.setAdapter(adapter);
-
-        // Example user ID
-        userId = getIntent().getIntExtra("userId", -1);  // You should pass it from login or session
 
         btnReserve.setOnClickListener(v -> {
             String selectedService = spinnerService.getSelectedItem().toString();
@@ -57,43 +62,34 @@ public class ReserveServiceActivity extends AppCompatActivity {
             int month = datePicker.getMonth();
             int year = datePicker.getYear();
 
-            Calendar selectedDate = Calendar.getInstance();
-            selectedDate.set(year, month, day);
-
             @SuppressLint("DefaultLocale")
             String dateStr = String.format("%02d/%02d/%04d", month + 1, day, year);
 
-            if (checkUserBookingOnDate(userId, dateStr)) {
-                Toast.makeText(this, selectedService + " reserved for " + dateStr, Toast.LENGTH_LONG).show();
-                // You can add reservation saving logic here later
+            // Format time (handle 24-hour format)
+            int hour = timePicker.getCurrentHour();
+            int minute = timePicker.getCurrentMinute();
+            @SuppressLint("DefaultLocale")
+            String timeStr = String.format("%02d:%02d", hour, minute);
+
+            // Check if user has an active booking on the selected date
+            if (dbHelper.hasActiveBookingOnDate(userId, dateStr)) {
+                // Check if service is available at the selected time
+                if (dbHelper.isServiceAvailable(selectedService, dateStr, timeStr)) {
+                    // Create service reservation
+                    boolean success = dbHelper.createServiceReservation(userId, selectedService, dateStr, timeStr);
+
+                    if (success) {
+                        Toast.makeText(this, selectedService + " reserved for " + dateStr + " at " + timeStr, Toast.LENGTH_LONG).show();
+                        finish(); // Return to previous screen
+                    } else {
+                        Toast.makeText(this, "Failed to reserve service. Please try again.", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(this, "Service not available at selected time. Please choose another time.", Toast.LENGTH_LONG).show();
+                }
             } else {
-                Toast.makeText(this, "No room booking on selected date!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "You must have an active room booking on " + dateStr + " to reserve this service.", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private boolean checkUserBookingOnDate(int userId, String selectedDate) {
-        Cursor bookings = dbHelper.getUserBookings(userId);
-        if (bookings != null && bookings.moveToFirst()) {
-            do {
-                String checkIn = bookings.getString(bookings.getColumnIndex("check_in_date"));
-                String checkOut = bookings.getString(bookings.getColumnIndex("check_out_date"));
-
-                try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-                    Date in = sdf.parse(checkIn);
-                    Date out = sdf.parse(checkOut);
-                    Date selected = sdf.parse(selectedDate);
-
-                    if (selected != null && in != null && out != null && !selected.before(in) && !selected.after(out)) {
-                        return true;
-                    }
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            } while (bookings.moveToNext());
-        }
-        return false;
     }
 }
