@@ -26,6 +26,15 @@ public class InformationPage extends AppCompatActivity {
 
         });
 
+        // go to booking history
+        View viewBookingHistory = findViewById(R.id.booking_history_button);
+        viewBookingHistory.setOnClickListener(view -> {
+
+            Intent intent_viewBookingHistory_button = new Intent(this, ViewRoomBookings.class);
+            startActivity(intent_viewBookingHistory_button);
+
+        });
+
 
 
     }
