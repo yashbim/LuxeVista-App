@@ -32,6 +32,15 @@ public class InformationPage extends AppCompatActivity {
         });
 
 
+        // go to service booking history
+        View viewServiceReservationHistory = findViewById(R.id.service_reservation_history_button);
+        viewServiceReservationHistory.setOnClickListener(view -> {
+
+            Intent intent_viewServiceReservationHistory_button = new Intent(this, ViewServiceReservations.class);
+            startActivity(intent_viewServiceReservationHistory_button);
+
+        });
+
 
     }
 }
