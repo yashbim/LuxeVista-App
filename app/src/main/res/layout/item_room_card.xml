@@ -4,49 +4,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="16dp"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
     android:backgroundTint="@color/bg_white"
-    app:cardElevation="8dp">
+    app:cardElevation="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/roomImage"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/executive_suite" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/roomTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="8dp"
-            android:text="Ocean View Suite"
-            android:textColor="@color/black"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/roomImage"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/executive_suite" />
 
-        <TextView
-            android:id="@+id/roomDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="4dp"
-            android:text="Spacious suite with a breathtaking ocean view, private balcony, and king-size bed."
-            android:textColor="#555" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/gradient_overlay"/>
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/roomPrice"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="6dp"
-            android:text="$250 / night"
-            android:textColor="@color/dark_blue_2"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/roomTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ocean View Suite"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/roomDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Spacious suite with a breathtaking ocean view, private balcony, and king-size bed."
+                android:textColor="#555"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:id="@+id/roomPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="$250 / night"
+                    android:textColor="@color/dark_blue_2"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>
+

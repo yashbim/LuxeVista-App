@@ -10,34 +10,25 @@
     tools:context=".ViewRooms">
 
     <!-- Header -->
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:id="@+id/headerCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        android:padding="16dp"
+        android:elevation="2dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/logo_no_design" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/logo_no_design" />
+    </LinearLayout>
 
     <!-- Attractions List -->
     <ScrollView
@@ -57,149 +48,116 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="View and reserve our services"
+                android:text="Discover and book our premium amenities"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/dark_blue_1"/>
+                android:textColor="@color/dark_blue_1"
+                android:paddingBottom="16dp"/>
 
             <!-- Attraction 1 -->
-            <!-- Inside your ScrollView > LinearLayout -->
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/spa_treatment_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="16dp"
-                android:backgroundTint="@color/white"
-                app:cardElevation="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp">
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp">
 
+                <!-- Large Image -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/spa" />
 
+                <!-- Details -->
                 <LinearLayout
-                    android:id="@+id/spa_treatment_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <!-- Large Image -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/spa" />
-
-                    <!-- Details -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:text="Luxury Spa Experience"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Spa Treatment"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/black" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Immerse yourself in a transformative wellness journey that rejuvenates both body and mind. Our expert therapists offer customized treatments using premium natural products that will leave you feeling refreshed and revitalized."
+                        android:textSize="15sp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/black" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Your Journey to Wellness."
-                            android:textSize="15sp"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🕒 Available: 7:30 AM – 9:00 PM"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/DarkGrey" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Duration: 1.5 hrs"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/DarkGrey" />
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration: 90 minutes of pure relaxation"
+                        android:textSize="14sp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/DarkGrey" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Separator Line -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/DarkGrey"
+                android:alpha="0.3"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"/>
 
             <!-- Attraction 2 -->
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:id="@+id/poolside_cabana_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="16dp"
-                android:backgroundTint="@color/white"
-                app:cardElevation="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp">
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
 
+                <!-- Large Image -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/poolside_cabanas" />
 
+                <!-- Details -->
                 <LinearLayout
-                    android:id="@+id/poolside_cabana_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                    <!-- Large Image -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/poolside_cabanas" />
-
-                    <!-- Details -->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:text="Exclusive Poolside Retreats"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Poolside Cabanas"
-                            android:textStyle="bold"
-                            android:textSize="18sp"
-                            android:textColor="@color/black" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Escape to your own private sanctuary with our premium poolside cabanas. Each elegantly furnished retreat offers personalized service, refreshing amenities, and spectacular views, creating the perfect setting for relaxation and enjoyment with friends and family."
+                        android:textSize="15sp"
+                        android:layout_marginTop="4dp"
+                        android:textColor="@color/black" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Your Private Oasis."
-                            android:textSize="15sp"
-                            android:layout_marginTop="4dp"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🕒 Available: 8:00 AM – 8:00 PM"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/DarkGrey" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Duration: Max 1.5 hours"
-                            android:textSize="14sp"
-                            android:layout_marginTop="6dp"
-                            android:textColor="@color/DarkGrey" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration: Up to 90 minutes of exclusive enjoyment"
+                        android:textSize="14sp"
+                        android:layout_marginTop="6dp"
+                        android:textColor="@color/DarkGrey" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.luxevista_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ public class LandingPage extends AppCompatActivity {
         setContentView(R.layout.activity_landing_page);
 
         // go to view rooms
-        View viewRooms = findViewById(R.id.backgroundViewRooms);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View viewRooms = findViewById(R.id.backgroundViewRooms);
         viewRooms.setOnClickListener(view -> {
 
             Intent intent_viewRooms_button = new Intent(this, ViewRooms.class);
@@ -28,7 +29,7 @@ public class LandingPage extends AppCompatActivity {
         });
 
         // go to view services
-        View viewServices = findViewById(R.id.backgroundViewServices);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View viewServices = findViewById(R.id.backgroundViewServices);
         viewServices.setOnClickListener(view -> {
 
             Intent intent_viewServices_button = new Intent(this, ViewServicesPage.class);
@@ -37,7 +38,7 @@ public class LandingPage extends AppCompatActivity {
         });
 
         // go to view attractions
-        View viewLocalAttractions = findViewById(R.id.backgroundViewAttractions);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) View viewLocalAttractions = findViewById(R.id.backgroundViewAttractions);
         viewLocalAttractions.setOnClickListener(view -> {
 
             Intent intent_viewLocalAttractions_button = new Intent(this, ViewLocalAttractions.class);
@@ -46,6 +47,7 @@ public class LandingPage extends AppCompatActivity {
         });
 
         // go to infomration page
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         View viewInformationPage = findViewById(R.id.backgroundViewInfo);
         viewInformationPage.setOnClickListener(view -> {
 

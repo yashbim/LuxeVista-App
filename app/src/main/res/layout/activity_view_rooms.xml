@@ -6,114 +6,137 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F5F7FA"
     tools:context=".ViewRooms">
 
-    <!-- Header Image Card -->
+    <!-- Header with Logo -->
     <androidx.cardview.widget.CardView
         android:id="@+id/headerCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="12dp">
 
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/logo_no_design" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Filter Toggle Button -->
-
-    <Button
-        android:id="@+id/book_now_button"
-        android:layout_width="wrap_content"
+    <!-- Button Container -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="@color/dark_grey_1"
-        android:text="Book Now"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toEndOf="@+id/toggleFilterButton"
-        app:layout_constraintTop_toBottomOf="@+id/headerCard" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/headerCard">
 
-    <Button
-        android:id="@+id/toggleFilterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
-        android:backgroundTint="@color/dark_blue_1"
-        android:text="Show Filters"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerCard" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="12dp">
 
-    <!-- Filter Layout - Using direct inclusion instead of <include> -->
+            <Button
+                android:id="@+id/toggleFilterButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/dark_blue_1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Filters"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:cornerRadius="16dp" />
 
+            <Button
+                android:id="@+id/book_now_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:backgroundTint="@color/dark_grey_1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="Book Now"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Filter Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
         android:backgroundTint="@color/white"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/toggleFilterButton"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/buttonContainer">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Filter Options"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:textColor="@color/black"
-                android:paddingBottom="8dp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="12dp" />
 
             <!-- Room Type Filter -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Room Type:"
-                android:textColor="@color/black" />
+                android:text="Room Type"
+                android:textColor="@color/dark_blue_2"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/roomTypeSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" />
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/spinner_background" />
 
             <!-- Availability Filter -->
             <CheckBox
@@ -121,51 +144,78 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Show available rooms only"
-                android:layout_marginBottom="8dp" />
+                android:textColor="@color/dark_blue_2"
+                android:buttonTint="@color/dark_blue_1"
+                android:layout_marginBottom="12dp" />
 
             <!-- Price Range Filter -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Price Range:"
-                android:textColor="@color/black" />
+                android:text="Price Range"
+                android:textColor="@color/dark_blue_2"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="12dp">
 
-                <EditText
-                    android:id="@+id/minPriceEditText"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Min $"
-                    android:inputType="numberDecimal"
-                    android:layout_marginEnd="8dp" />
+                    android:layout_marginEnd="8dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp">
 
-                <EditText
-                    android:id="@+id/maxPriceEditText"
+                    <EditText
+                        android:id="@+id/minPriceEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Min $"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Max $"
-                    android:inputType="numberDecimal" />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp">
+
+                    <EditText
+                        android:id="@+id/maxPriceEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Max $"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <!-- Sort Options -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sort By:"
-                android:textColor="@color/black" />
+                android:text="Sort By"
+                android:textColor="@color/dark_blue_2"
+                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/sortBySpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp" />
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/spinner_background" />
 
             <!-- Apply Filters Button -->
             <Button
@@ -174,9 +224,26 @@
                 android:layout_height="wrap_content"
                 android:text="Apply Filters"
                 android:backgroundTint="@color/dark_blue_2"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:cornerRadius="16dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <!-- Room Title and Count -->
+    <TextView
+        android:id="@+id/roomsHeaderText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="Available Rooms"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/filterLayout" />
 
     <!-- RecyclerView for Room Cards -->
     <androidx.recyclerview.widget.RecyclerView
@@ -184,12 +251,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:padding="8dp"
         android:clipToPadding="false"
-        app:layout_constraintTop_toBottomOf="@id/filterLayout"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roomsHeaderText"
         tools:listitem="@layout/item_room_card" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

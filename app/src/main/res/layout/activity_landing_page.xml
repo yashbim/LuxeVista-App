@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/bg_white">
+    android:background="@color/bg_cream">
 
     <!-- Header Image Card -->
     <androidx.cardview.widget.CardView
@@ -15,8 +15,8 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
         android:backgroundTint="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/headerCard"
@@ -62,19 +62,19 @@
                 android:id="@+id/backgroundViewRooms"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
+                android:background="@color/light_grey_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Slanted divider -->
+            <!-- Curved divider instead of slanted -->
             <View
                 android:id="@+id/slantedDividerRooms"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
-                android:background="@color/white"
-                android:rotation="10"
+                android:background="@color/light_grey_1"
+                android:rotation="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageSectionRooms"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +100,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Text section (2/3 of the card) -->
@@ -118,7 +118,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Rooms"
+                    android:text="Browse Rooms"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -127,9 +127,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Find your perfect stay"
+                    android:text="Discover our range of luxurious rooms and suites, each designed to provide comfort and elegance for an unforgettable stay."
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/DarkGrey" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -141,8 +141,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/cardViewRooms"
@@ -158,19 +158,19 @@
                 android:id="@+id/backgroundViewServices"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
+                android:background="@color/light_grey_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Slanted divider -->
+            <!-- Curved divider instead of slanted -->
             <View
                 android:id="@+id/slantedDividerServices"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
-                android:background="@color/white"
-                android:rotation="10"
+                android:background="@color/light_grey_1"
+                android:rotation="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageSectionServices"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -196,7 +196,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Text section (2/3 of the card) -->
@@ -214,7 +214,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Services"
+                    android:text="Explore Amenities"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -223,9 +223,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Explore our amenities"
+                    android:text="Indulge in our premium services, including spa treatments, gourmet dining, and personalized concierge support for a seamless experience."
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/DarkGrey" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -237,8 +237,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/cardViewServices"
@@ -254,19 +254,19 @@
                 android:id="@+id/backgroundViewAttractions"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
+                android:background="@color/light_grey_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Slanted divider -->
+            <!-- Curved divider instead of slanted -->
             <View
                 android:id="@+id/slantedDividerAttractions"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
-                android:background="@color/white"
-                android:rotation="10"
+                android:background="@color/light_grey_1"
+                android:rotation="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageSectionAttractions"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -292,7 +292,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Text section (2/3 of the card) -->
@@ -310,7 +310,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Local Attractions"
+                    android:text="Nearby Adventures"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -319,9 +319,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Discover nearby experiences"
+                    android:text="Uncover exciting local attractions, from cultural landmarks to natural wonders, all just moments away from our hotel."
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/DarkGrey" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -333,8 +333,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="16dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="4dp"
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/cardLocalAttractions"
@@ -350,19 +350,19 @@
                 android:id="@+id/backgroundViewInfo"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/white"
+                android:background="@color/light_grey_1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Slanted divider -->
+            <!-- Curved divider instead of slanted -->
             <View
                 android:id="@+id/slantedDividerInfo"
                 android:layout_width="30dp"
                 android:layout_height="0dp"
-                android:background="@color/white"
-                android:rotation="10"
+                android:background="@color/light_grey_1"
+                android:rotation="0"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageSectionInfo"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -388,7 +388,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:shapeAppearanceOverlay="@style/SlantedImageStyle"/>
+                    app:shapeAppearanceOverlay="@style/CircularImageStyle"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Text section (2/3 of the card) -->
@@ -406,7 +406,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Information"
+                    android:text="Account Details"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
@@ -415,9 +415,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Account and contact details"
+                    android:text="Access essential information about your stay, including account details, contact information, and hotel policies for a hassle-free visit."
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textColor="@color/DarkGrey" />
+                    android:textColor="@color/black" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -4,48 +4,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_marginTop="30dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
     android:background="@color/white"
     tools:context=".ViewRoomBookings">
 
-    <!-- Header -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/headerCard"
-        android:layout_width="match_parent"
+    <!-- Header Logo -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logo_no_design"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
+    <!-- Header Divider -->
+    <View
+        android:id="@+id/headerDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#E0E0E0"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/logo_no_design" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!--  List -->
+    <!-- Bookings List -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintTop_toBottomOf="@id/headerDivider"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -65,12 +59,23 @@
                 android:textSize="20sp"
                 android:textColor="@color/dark_blue_1"/>
 
-            <!-- Container for booking cards -->
+            <!-- Container for booking items -->
             <LinearLayout
                 android:id="@+id/bookingsContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
+
+            <!-- Empty state message - can be set to VISIBLE when no bookings exist -->
+            <TextView
+                android:id="@+id/emptyBookingsMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="You don't have any bookings yet."
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_marginTop="24dp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

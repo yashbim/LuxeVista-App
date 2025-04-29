@@ -6,119 +6,158 @@
     android:layout_height="match_parent"
     tools:context=".CreateAccount">
 
-    <ImageView
-        android:id="@+id/logo_launch_page"
-        android:layout_width="386dp"
-        android:layout_height="195dp"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.162"
-        app:srcCompat="@drawable/logo" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!--    password first-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/enterEmail_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email Address"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+            <ImageView
+                android:id="@+id/logo_launch_page"
+                android:layout_width="280dp"
+                android:layout_height="160dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo" />
 
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="Abc@1234"
-        android:textColor="@color/DarkGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+            <TextView
+                android:id="@+id/create_account_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Create Account"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logo_launch_page" />
 
-    <TextView
-        android:id="@+id/enterPassword_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.286"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+            <LinearLayout
+                android:id="@+id/form_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="32dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/create_account_title">
 
-    <TextView
-        android:id="@+id/confirmPassword_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm Password"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
+                <!-- Email Field -->
+                <TextView
+                    android:id="@+id/enterEmail_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email Address"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="johndoe@email.com"
-        android:textColor="@color/DarkGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:boxStrokeColor="@color/dark_blue_2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <Button
-        android:id="@+id/proceed_to_login_button"
-        android:text="Proceed to Login"
-        android:layout_width="309dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="328dp"
-        android:backgroundTint="@color/dark_blue_2"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+                    <EditText
+                        android:id="@+id/editTextTextEmailAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="johndoe@email.com"
+                        android:inputType="textEmailAddress"
+                        android:textColor="@color/DarkGrey"
+                        android:padding="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    password first-->
-    <EditText
-        android:id="@+id/editTextreneterpw"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:hint="********"
-        android:textColor="@color/DarkGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.781" />
+                <!-- Password Field -->
+                <TextView
+                    android:id="@+id/enterPassword_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:boxStrokeColor="@color/dark_blue_2"
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                        android:id="@+id/editTextTextPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Abc@1234"
+                        android:inputType="textPassword"
+                        android:textColor="@color/DarkGrey"
+                        android:padding="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Confirm Password Field -->
+                <TextView
+                    android:id="@+id/confirmPassword_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm Password"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:boxStrokeColor="@color/dark_blue_2"
+                    app:passwordToggleEnabled="true"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                        android:id="@+id/editTextreneterpw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="********"
+                        android:inputType="textPassword"
+                        android:textColor="@color/DarkGrey"
+                        android:padding="16dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/terms_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="By creating an account, you agree to our Terms of Service and Privacy Policy"
+                    android:textColor="@color/DarkGrey"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="24dp" />
+
+                <Button
+                    android:id="@+id/proceed_to_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:backgroundTint="@color/dark_blue_2"
+                    android:text="Proceed to Login"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:cornerRadius="12dp"
+                    android:layout_marginBottom="32dp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

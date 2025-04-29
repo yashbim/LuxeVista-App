@@ -8,6 +8,20 @@
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 
+    <!-- Add this to your styles.xml file -->
+    <style name="ShapeAppearanceOverlay.TopRounded" parent="">
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- Image Styles -->
+    <style name="CircularImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
 
 
 </resources>

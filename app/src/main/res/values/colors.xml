@@ -8,10 +8,17 @@
     <color name="bg_blue">#e6f3ff</color>
     <color name="red">#E91E63</color>
     <color name="logo_gold">#d8901d</color>
-    <color name="dark_blue_1">#191c40</color>
-    <color name="dark_blue_2">#404472</color>
-    <color name="dark_grey_1">#5c5f7c</color>
+    <color name="dark_blue_1">#00879E</color>
+    <color name="dark_blue_2">#6bb3bf</color>
+    <color name="dark_grey_1">#ED6A99</color>
     <color name="light_grey_1">#c3c0c0</color>
     <color name="bg_white">#EDEBEB</color>
+    <color name="bg_cream">#FFF8F1</color>
+    <color name="accent_teal">#00B8A9</color>
+    <color name="deep_navy">#192841</color>
+    <color name="rich_purple">#5E3C6B</color>
+    <color name="warm_coral">#EA6A47</color>
+    <color name="forest_green">#2A6041</color>
+    <color name="light_grey">#E0E0E0</color>
 
 </resources>

@@ -10,41 +10,39 @@
     tools:context=".ViewRooms">
 
     <!-- Header -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/headerCard"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:backgroundTint="@color/white"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="6dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/logo_no_design"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp">
+    <TextView
+        android:id="@+id/headerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Fill in the following to reserve your service."
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/dark_blue_1"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/logo_no_design" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Attractions List -->
+    <!-- Main Content -->
     <ScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintTop_toBottomOf="@id/headerText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -54,89 +52,90 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!-- Service Selection -->
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fill in the following to reserver your service."
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/dark_blue_1"/>
+                android:text="Select Service"
+                android:textSize="18sp"
+                android:textColor="@color/dark_blue_1"
+                android:layout_marginBottom="8dp" />
 
-            <!-- Attraction 1 -->
-            <!-- Inside your ScrollView > LinearLayout -->
-            <androidx.cardview.widget.CardView
+            <Spinner
+                android:id="@+id/spinnerService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:background="@android:drawable/btn_dropdown" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                app:cardCornerRadius="16dp"
-                android:backgroundTint="@color/white"
-                app:cardElevation="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp">
+                android:layout_marginBottom="16dp" />
 
+            <!-- Date Selection -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Date"
+                android:textSize="18sp"
+                android:textColor="@color/dark_blue_1"
+                android:layout_marginBottom="8dp" />
 
-                <LinearLayout
-                    xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="24dp"
-                    android:orientation="vertical">
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:datePickerMode="calendar"
+                android:calendarViewShown="true"
+                android:spinnersShown="false" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select Service"
-                        android:textSize="18sp"
-                        android:layout_marginBottom="8dp" />
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
-                    <Spinner
-                        android:id="@+id/spinnerService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+            <!-- Time Selection -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Time"
+                android:textSize="18sp"
+                android:textColor="@color/dark_blue_1"
+                android:layout_marginBottom="8dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select Date"
-                        android:layout_marginTop="24dp"
-                        android:textSize="18sp" />
+            <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"/>
 
-                    <DatePicker
-                        android:id="@+id/datePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Select Time"
-                        android:layout_marginTop="24dp"
-                        android:textSize="18sp" />
-
-                    <TimePicker
-                        android:id="@+id/timePicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:timePickerMode="spinner"/>
-
-                    <Button
-                        android:id="@+id/btnReserveService"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Reserve Service"
-                        android:layout_marginTop="32dp"
-                        android:backgroundTint="@color/dark_blue_2"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        app:cornerRadius="10dp" />
-                </LinearLayout>
-
-
-            </androidx.cardview.widget.CardView>
-
-
-
+            <!-- Reserve Button -->
+            <Button
+                android:id="@+id/btnReserveService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reserve Service"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="@color/dark_blue_2"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:cornerRadius="10dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
